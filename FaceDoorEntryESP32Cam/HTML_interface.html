@@ -122,6 +122,10 @@ body {
     <input id="person" type="text" value="" placeholder="Type the person's name here">
   </div>
   <div class="buttons">
+    <button id="button-turn180" class="left">TURN 180</button>
+    <button id="button-toggle_led" class="right">TOGGLE LED</button>
+  </div>
+  <div class="buttons">
     <button id="button-stream" class="left">STREAM CAMERA</button>
     <button id="button-detect" class="right">DETECT FACES</button>
   </div>
@@ -152,6 +156,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
   const captureButton = document.getElementById("button-capture");
   const recogniseButton = document.getElementById("button-recognise");
   const deleteAllButton = document.getElementById("delete_all");
+  const turn180Button = document.getElementById("button-turn180");
+  const toggleLedButton = document.getElementById("button-toggle_led");
+        
+
 
   // gain, frequency, duration
   a=new AudioContext();
@@ -204,6 +212,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
   };
   deleteAllButton.onclick = () => {
     ws.send("delete_all");
+  };
+  turn180Button.onclick = () => {
+    ws.send("turn_180");
+  };
+  toggleLedButton.onclick = () => {
+    ws.send("toggle_led");
   };
   personFormField.onkeyup = () => {
     captureButton.disabled = false;
